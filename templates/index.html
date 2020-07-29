@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <!-- Mars News -->
+    <div class="row" id="mars-news">
+      <div class="col-md-12">
+        <h2 class="text-center">Latest Mars News</h2>
+        <h4>{{mars.news_title}}</h4>
+        <h4>{{mars.news_paragraph}}</h4>
+      </div>
+    </div>  
+
+
+    <!-- Mars Featured Image -->
+    <div class="row" id="mars-featured-image">
+      <div class="col-md-12">
+        <h2 class="text-center">Featured Mars Image</h2>
+          <img src="{{mars.featured_image | default('static/images/error.png', true) }}" class="img-responsive"
+          alt="Responsive image">
+      </div>
+    </div>
+    
+    <!-- Mars Weather -->
+    <div class="row" id="mars-weather">
+      <div class="col-md-12">
+
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  <h2 class="text-center">Current Weather on Mars</h2>
+                  <h4>{{mars.weather}}</h4>
+              </div>
+          </div>
+
+
+      </div>
+    </div>
+
+    <!-- Mars Facts -->
+    <div class="row" id="mars-facts">
+      <div class="col-md-12">
+        <h2 class="text-center">Mars Facts</h2>
+        {{mars.facts | safe}}
+      </div>
+    </div>
+    <!-- Mars Hemispheres -->
+    <div class="row" id="mars-hemispheres" style="margin-top:80px;">
+
+      <div class="page-header">
+        <h2 class="text-center">Mars Hemispheres</h2>
+      </div>
+      {% for hemisphere in mars.hemispheres %}
+        <div class="col-md-6">
+            <div class="thumbnail">
+              <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}"
+              alt="...">
+          <div class="caption">
+              <h3>{{hemisphere.title}}</h3>
+            </div>
+            </div>
+        </div>
+      {% endfor %}
+
+
+
+</body>
+
+</html>
