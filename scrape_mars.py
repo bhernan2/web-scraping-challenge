@@ -1,12 +1,12 @@
 from bs4 import BeautifulSoup 
 import pandas as pd
-import pymongo
 from splinter import Browser
-import requests
+import time
+import re
 
 def scrape_all():
     #initiate for deployment
-    executable_path = {'executable_path': 'chromedriver'}
+    executable_path = {'executable_path':'chromedriver'}
     browser = Browser('chrome', **executable_path, headless=False, incognito=True)    
     news_title, news_paragraph = mars_news(browser)
 
@@ -43,8 +43,6 @@ def featured_image(browser):
     featured_image_url = main_url + featured_image_url
 
     return featured_image_url
-
-import time
 
 def twitter_weather(browser):
     twitter_weather_url= 'https://twitter.com/marswxreport?lang=en'
